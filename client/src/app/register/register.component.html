@@ -1,4 +1,4 @@
-<form [formGroup]='registerForm' (ngSubmit)="register()" autocomplete="off">
+<form [formGroup]='registerForm' (ngSubmit)="registerForm.valid && register()" autocomplete="off">
 <h2 class="text-center text-primary">Sign Up</h2>
 <hr/>
 
@@ -17,12 +17,19 @@
 <app-date-input [formControl]='registerForm.controls["dateOfBirth"]' [maxDate]='maxDate' [label]='"Date Of Birth"'></app-date-input>
 <app-text-input [formControl]='registerForm.controls["city"]' [label]='"City"'></app-text-input>
 <app-text-input [formControl]='registerForm.controls["country"]' [label]='"Country"'></app-text-input>
-
 <app-text-input [formControl]='registerForm.controls["password"]' [type]='"password"' [label]='"Password"'></app-text-input>
 <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [type]='"password"' [label]='"Confirm Password"'></app-text-input>
 
+<div class="row" *ngIf="validationErrors.length">
+    <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+            {{error}}
+        </li>
+    </ul>
+</div>
+
 <div class="form group text-center">
-    <button class="btn btn-sucess mr-2" type="submit">Register</button>
+    <button [disabled]="!registerForm.valid" class="btn btn-sucess mr-2" type="submit">Register</button>
     <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
 </div>
 </form>
