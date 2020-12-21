@@ -21,7 +21,8 @@ namespace API.Entities
         public string City {get; set;}
         public string Country {get; set;}
         public ICollection<Photo> Photos {get; set;}
-
+public ICollection<UserLike> LikedByUsers { get; set; }
+public ICollection<UserLike> LikedUsers { get; set; }
 
         //note automapper in MemberDto will automatically assign age to the output of GetAge method below, simple based on that methods naming convention.
         // public int GetAge()
