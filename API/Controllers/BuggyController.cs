@@ -44,5 +44,17 @@ namespace API.Controllers
         {
             return BadRequest("This was not a good request");
         }
+
+                [HttpGet("PlaceHolder1")]
+        public ActionResult<string> GetBadRequest()
+        {
+            return BadRequest("PlaceHolder 1");
+        }
+
+                [HttpGet("PlaceHolder2")]
+        public ActionResult<string> GetBadRequest()
+        {
+            return BadRequest("PlaceHolder 2");
+        }
     }
 }
