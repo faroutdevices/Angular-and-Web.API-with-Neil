@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
 model: any = {}
+title = "The title of the app";
 
   constructor(public accountService: AccountService, private router: Router,
      private toastr: ToastrService) { }
