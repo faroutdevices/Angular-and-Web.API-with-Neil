@@ -28,9 +28,9 @@ namespace API.Controllers
             var likedUser = await _userRepository.GetUserByUsernameAsync(username);
             var SourceUser = await _likesRepository.GetUserWithLikes(sourceUserId);
             if (likedUser == null) return NotFound();
-            if (SourceUser.UserName == username) return BadRequest("You cannot like yourself");
+            if (SourceUser.UserName == username) return BadRequest("You cannot match yourself");
             var userLike = await _likesRepository.GetUserLike(sourceUserId, likedUser.Id);
-            if (userLike != null) return BadRequest("You already like this user");
+            if (userLike != null) return BadRequest("You already match this user");
             userLike = new UserLike
             {
                 SourceUserId = sourceUserId,
@@ -39,7 +39,7 @@ namespace API.Controllers
 
             SourceUser.LikedUsers.Add(userLike);
             if (await _userRepository.SaveAllAsync()) return Ok();
-            return BadRequest("Failed to like user");
+            return BadRequest("Failed to match user");
         }
 
         [HttpGet]
